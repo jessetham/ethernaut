@@ -7,6 +7,7 @@ The `transfer` function will revert if the transaction fails. We can use this to
 pragma solidity >=0.7.0 <0.9.0;
 
 contract SoSelfless {
+
     constructor(address payable _instance) payable {
         _instance.call{value: msg.value}("");
     }

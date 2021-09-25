@@ -8,20 +8,11 @@ Deploy the smart contract below, fund it with some ETH, and then destroy it. Cla
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.0 <0.9.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract TakeMyMoney is Ownable {
+contract TakeMyMoney {
     
-    address public forceInstance;
-    
-    constructor(address _instance) {
-        forceInstance = _instance;
-    }
-    
-    receive() external payable {}
-    
-    function destroy() external onlyOwner {
-        selfdestruct(payable(forceInstance));
+    // You need to give this contract some ETH when you deploy it.
+    constructor(address payable _instance) payable {
+        selfdestruct(_instance);
     }
 }
 ```
